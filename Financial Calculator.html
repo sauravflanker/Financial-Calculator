@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Financial Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f2f5;
+        }
+        .calculator {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .calculator h2 {
+            text-align: center;
+            color: #333;
+        }
+        .calculator h3 {
+            color: #444;
+        }
+        .calculator label {
+            display: block;
+            margin: 15px 0 5px;
+        }
+        .calculator input, .calculator button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Comprehensive Financial Calculator</h2>
+        
+        <!-- Income Statement Section -->
+        <h3>Income Statement Calculator</h3>
+        <label for="revenue">Revenue (INR):</label>
+        <input type="number" id="revenue" placeholder="Enter revenue" oninput="calculateIncomeStatement()">
+        <label for="cogs">Cost of Goods Sold (INR):</label>
+        <input type="number" id="cogs" placeholder="Enter cost of goods sold" oninput="calculateIncomeStatement()">
+        <label for="operatingExpenses">Operating Expenses (INR):</label>
+        <input type="number" id="operatingExpenses" placeholder="Enter operating expenses" oninput="calculateIncomeStatement()">
+        <label for="otherIncome">Other Income/Expenses (INR):</label>
+        <input type="number" id="otherIncome" placeholder="Enter other income/expenses" oninput="calculateIncomeStatement()">
+        
+        <div class="result" id="incomeStatementResult"></div>
+
+        <!-- Balance Sheet Section -->
+        <h3>Balance Sheet Calculator</h3>
+        <label for="currentAssets">Current Assets (INR):</label>
+        <input type="number" id="currentAssets" placeholder="Enter current assets" oninput="calculateBalanceSheet()">
+        <label for="fixedAssets">Fixed Assets (INR):</label>
+        <input type="number" id="fixedAssets" placeholder="Enter fixed assets" oninput="calculateBalanceSheet()">
+        <label for="currentLiabilities">Current Liabilities (INR):</label>
+        <input type="number" id="currentLiabilities" placeholder="Enter current liabilities" oninput="calculateBalanceSheet()">
+        <label for="longTermLiabilities">Long-Term Liabilities (INR):</label>
+        <input type="number" id="longTermLiabilities" placeholder="Enter long-term liabilities" oninput="calculateBalanceSheet()">
+        <label for="equity">Equity (INR):</label>
+        <input type="number" id="equity" placeholder="Enter equity" oninput="calculateBalanceSheet()">
+        
+        <div class="result" id="balanceSheetResult"></div>
+
+        <!-- Cash Flow Statement Section -->
+        <h3>Cash Flow Statement Calculator</h3>
+        <label for="operatingCashFlow">Operating Cash Flow (INR):</label>
+        <input type="number" id="operatingCashFlow" placeholder="Enter operating cash flow" oninput="calculateCashFlowStatement()">
+        <label for="investingCashFlow">Investing Cash Flow (INR):</label>
+        <input type="number" id="investingCashFlow" placeholder="Enter investing cash flow" oninput="calculateCashFlowStatement()">
+        <label for="financingCashFlow">Financing Cash Flow (INR):</label>
+        <input type="number" id="financingCashFlow" placeholder="Enter financing cash flow" oninput="calculateCashFlowStatement()">
+        
+        <div class="result" id="cashFlowStatementResult"></div>
+
+        <!-- Financial Status Overview and Recommendations -->
+        <h3>Financial Status Overview and Recommendations</h3>
+        <button onclick="generateFinancialOverview()">Generate Financial Overview</button>
+        <div class="result" id="financialOverviewResult"></div>
+    </div>
+
+    <script>
+        // Income Statement Calculation
+        function calculateIncomeStatement() {
+            var revenue = parseFloat(document.getElementById('revenue').value) || 0;
+            var cogs = parseFloat(document.getElementById('cogs').value) || 0;
+            var operatingExpenses = parseFloat(document.getElementById('operatingExpenses').value) || 0;
+            var otherIncome = parseFloat(document.getElementById('otherIncome').value) || 0;
+
+            var grossProfit = revenue - cogs;
+            var netIncome = grossProfit - operatingExpenses + otherIncome;
+
+            document.getElementById('incomeStatementResult').innerHTML = `
+                Gross Profit: INR ${grossProfit.toFixed(2)}<br>
+                Net Income: INR ${netIncome.toFixed(2)}
+            `;
+        }
+
+        // Balance Sheet Calculation
+        function calculateBalanceSheet() {
+            var currentAssets = parseFloat(document.getElementById('currentAssets').value) || 0;
+            var fixedAssets = parseFloat(document.getElementById('fixedAssets').value) || 0;
+            var currentLiabilities = parseFloat(document.getElementById('currentLiabilities').value) || 0;
+            var longTermLiabilities = parseFloat(document.getElementById('longTermLiabilities').value) || 0;
+            var equity = parseFloat(document.getElementById('equity').value) || 0;
+
+            var totalAssets = currentAssets + fixedAssets;
+            var totalLiabilities = currentLiabilities + longTermLiabilities;
+
+            document.getElementById('balanceSheetResult').innerHTML = `
+                Total Assets: INR ${totalAssets.toFixed(2)}<br>
+                Total Liabilities: INR ${totalLiabilities.toFixed(2)}<br>
+                Equity: INR ${(totalAssets - totalLiabilities).toFixed(2)}
+            `;
+        }
+
+        // Cash Flow Statement Calculation
+        function calculateCashFlowStatement() {
+            var operatingCashFlow = parseFloat(document.getElementById('operatingCashFlow').value) || 0;
+            var investingCashFlow = parseFloat(document.getElementById('investingCashFlow').value) || 0;
+            var financingCashFlow = parseFloat(document.getElementById('financingCashFlow').value) || 0;
+
+            var netCashFlow = operatingCashFlow + investingCashFlow + financingCashFlow;
+
+            document.getElementById('cashFlowStatementResult').innerHTML = `
+                Net Cash Flow: INR ${netCashFlow.toFixed(2)}
+            `;
+        }
+
+        // Generate Financial Overview and Recommendations
+        function generateFinancialOverview() {
+            var revenue = parseFloat(document.getElementById('revenue').value) || 0;
+            var cogs = parseFloat(document.getElementById('cogs').value) || 0;
+            var operatingExpenses = parseFloat(document.getElementById('operatingExpenses').value) || 0;
+            var otherIncome = parseFloat(document.getElementById('otherIncome').value) || 0;
+
+            var currentAssets = parseFloat(document.getElementById('currentAssets').value) || 0;
+            var fixedAssets = parseFloat(document.getElementById('fixedAssets').value) || 0;
+            var currentLiabilities = parseFloat(document.getElementById('currentLiabilities').value) || 0;
+            var longTermLiabilities = parseFloat(document.getElementById('longTermLiabilities').value) || 0;
+            var equity = parseFloat(document.getElementById('equity').value) || 0;
+
+            var operatingCashFlow = parseFloat(document.getElementById('operatingCashFlow').value) || 0;
+            var investingCashFlow = parseFloat(document.getElementById('investingCashFlow').value) || 0;
+            var financingCashFlow = parseFloat(document.getElementById('financingCashFlow').value) || 0;
+
+            var grossProfit = revenue - cogs;
+            var netIncome = grossProfit - operatingExpenses + otherIncome;
+
+            var totalAssets = currentAssets + fixedAssets;
+            var totalLiabilities = currentLiabilities + longTermLiabilities;
+
+            var netCashFlow = operatingCashFlow + investingCashFlow + financingCashFlow;
+
+            var equityCalc = totalAssets - totalLiabilities;
+
+            var financialOverview = `
+                <h4>Income Statement Overview:</h4>
+                Gross Profit: INR ${grossProfit.toFixed(2)}<br>
+                Net Income: INR ${netIncome.toFixed(2)}<br>
+                <h4>Balance Sheet Overview:</h4>
+                Total Assets: INR ${totalAssets.toFixed(2)}<br>
+                Total Liabilities: INR ${totalLiabilities.toFixed(2)}<br>
+                Equity: INR ${equityCalc.toFixed(2)}<br>
+                <h4>Cash Flow Statement Overview:</h4>
+                Net Cash Flow: INR ${netCashFlow.toFixed(2)}<br>
+            `;
+
+            var recommendations = `
+                <h4>Recommendations:</h4>
+                <h5>Profitability:</h5>
+                ${netIncome > 0 ? "Your business is profitable. Consider reinvesting in growth opportunities." : "Your business is not profitable. Consider strategies to reduce costs or increase revenue."}<br>
+                <h5>Liquidity and Cash Flow:</h5>
+                ${netCashFlow > 0 ? "Your cash flow is positive. Maintain this by managing receivables and payables effectively." : "Your cash flow is negative. Improve liquidity by optimizing inventory levels or negotiating better payment terms."}<br>
+                <h5>Debt Management:</h5>
+                ${totalLiabilities > equity ? "Your liabilities exceed equity. Consider reducing debt levels or improving equity through retained earnings or new investments." : "Your equity exceeds liabilities. Maintain this balance to ensure financial stability."}
+            `;
+
+            document.getElementById('financialOverviewResult').innerHTML = financialOverview + recommendations;
+        }
+    </script>
+</body>
+</html>
