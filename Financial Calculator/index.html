@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Financial Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Comprehensive Financial Calculator</h1>
+    
+    <div class="container">
+        <div class="calculator-section">
+            <h2>Income Statement Calculator</h2>
+            <label for="revenue">Revenue (INR):</label>
+            <input type="number" id="revenue" class="form-control" placeholder="Enter Revenue">
+            
+            <label for="cogs">Cost of Goods Sold (INR):</label>
+            <input type="number" id="cogs" class="form-control" placeholder="Enter COGS">
+
+            <label for="operating-expenses">Operating Expenses (INR):</label>
+            <input type="number" id="operating-expenses" class="form-control" placeholder="Enter Operating Expenses">
+
+            <label for="other-income">Other Income/Expenses (INR):</label>
+            <input type="number" id="other-income" class="form-control" placeholder="Enter Other Income/Expenses">
+
+            <h3>Net Income: <span id="net-income">0</span> INR</h3>
+        </div>
+
+        <div class="calculator-section">
+            <h2>Balance Sheet Calculator</h2>
+            <label for="current-assets">Current Assets (INR):</label>
+            <input type="number" id="current-assets" class="form-control" placeholder="Enter Current Assets">
+
+            <label for="fixed-assets">Fixed Assets (INR):</label>
+            <input type="number" id="fixed-assets" class="form-control" placeholder="Enter Fixed Assets">
+
+            <label for="current-liabilities">Current Liabilities (INR):</label>
+            <input type="number" id="current-liabilities" class="form-control" placeholder="Enter Current Liabilities">
+
+            <label for="long-term-liabilities">Long-Term Liabilities (INR):</label>
+            <input type="number" id="long-term-liabilities" class="form-control" placeholder="Enter Long-Term Liabilities">
+
+            <label for="equity">Equity (INR):</label>
+            <input type="number" id="equity" class="form-control" placeholder="Enter Equity">
+
+            <h3>Total Assets: <span id="total-assets">0</span> INR</h3>
+            <h3>Total Liabilities: <span id="total-liabilities">0</span> INR</h3>
+        </div>
+
+        <div class="calculator-section">
+            <h2>Cash Flow Statement Calculator</h2>
+            <label for="operating-cash-flow">Operating Cash Flow (INR):</label>
+            <input type="number" id="operating-cash-flow" class="form-control" placeholder="Enter Operating Cash Flow">
+
+            <label for="investing-cash-flow">Investing Cash Flow (INR):</label>
+            <input type="number" id="investing-cash-flow" class="form-control" placeholder="Enter Investing Cash Flow">
+
+            <label for="financing-cash-flow">Financing Cash Flow (INR):</label>
+            <input type="number" id="financing-cash-flow" class="form-control" placeholder="Enter Financing Cash Flow">
+
+            <h3>Cash Flow Summary: <span id="cash-flow-summary">0</span> INR</h3>
+        </div>
+
+        <button id="download" class="btn btn-success">Download Overview</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
